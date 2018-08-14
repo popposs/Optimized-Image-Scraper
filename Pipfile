@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 praw = "*"
+redis = "*"
 
 [dev-packages]
 dashboard-lol = {editable = true, path = "."}
