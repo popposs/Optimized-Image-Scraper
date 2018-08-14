@@ -1,0 +1,24 @@
+{
+  "name": "dashboard_lol",
+  "version": "1.0.0",
+  "description": "Scrape cats off reddit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/popposs/dashboard_lol.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/popposs/dashboard_lol/issues"
+  },
+  "homepage": "https://github.com/popposs/dashboard_lol#readme",
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.4"
+  }
+}
