@@ -1,6 +1,7 @@
 from auth import get_reddit
 from channels import CHANNELS
 from cache import cache_client
+import time
 
 
 def check_cached(val):
@@ -8,19 +9,20 @@ def check_cached(val):
 
 if __name__ == '__main__':
 	reddit = get_reddit()
+	start = time.time()
 
-	try:
-		for channel in CHANNELS:
-			print(channel, '\n')
-			for submission in reddit.subreddit(channel).hot(limit=10):
-				url = cache_client.get(submission.title)
-				cached = check_cached(url)
-				if cached is None:
-					cache_client.set(submission.title, submission.url.encode('utf-8'))
-					print('\t', submission.url)
-				else:
-					print('Cached:\t', cached)
 
-	except Exception as e:
-		print('Exception:', e)
+	for channel in CHANNELS:
+		print(channel, '\n')
+		urls = cache_client.get(channel)
+		cached = check_cached(urls)
 
+		if cached is None:
+			submissions = reddit.subreddit(channel).hot(limit=10)
+			urls = [ s.url for s in submissions ]
+			cache_client.set(channel, urls, ex=60) # cache for 1 minute
+
+		print('\t', urls)
+
+	end = time.time()
+	print(end - start)
