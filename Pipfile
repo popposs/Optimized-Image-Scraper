@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 praw = "*"
 redis = "*"
+flask = "*"
+flask-cors = "*"
 
 [dev-packages]
 dashboard-lol = {editable = true, path = "."}

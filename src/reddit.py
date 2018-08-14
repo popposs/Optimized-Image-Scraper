@@ -3,26 +3,26 @@ from channels import CHANNELS
 from cache import cache_client
 import time
 
+reddit = get_reddit()
+
 
 def check_cached(val):
 	return val.decode('utf-8') if val else None
 
-if __name__ == '__main__':
-	reddit = get_reddit()
-	start = time.time()
 
+def get_top_posts():
+	global reddit
+	posts = {}
 
 	for channel in CHANNELS:
-		print(channel, '\n')
 		urls = cache_client.get(channel)
-		cached = check_cached(urls)
+		urls = check_cached(urls)
 
-		if cached is None:
+		if urls is None:
 			submissions = reddit.subreddit(channel).hot(limit=10)
 			urls = [ s.url for s in submissions ]
 			cache_client.set(channel, urls, ex=60) # cache for 1 minute
-
-		print('\t', urls)
-
-	end = time.time()
-	print(end - start)
+		
+		posts[channel] = urls
+	
+	return posts
