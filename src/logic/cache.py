@@ -1,4 +1,4 @@
-from config import options
+from src.logic.config import options
 import redis
 
 

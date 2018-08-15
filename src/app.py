@@ -1,11 +1,15 @@
-from flask import Flask, request, make_response, Response, jsonify
+from flask import Flask, request, make_response, Response, jsonify, render_template
 from flask_cors import CORS
-from reddit import get_top_posts
+from src.logic.reddit import get_top_posts
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/', methods=['GET'])
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/urls', methods=['GET'])
 def get_post():
     return jsonify({'channels': get_top_posts()})
 

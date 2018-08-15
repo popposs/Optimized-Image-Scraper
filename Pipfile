@@ -11,6 +11,7 @@ flask-cors = "*"
 
 [dev-packages]
 dashboard-lol = {editable = true, path = "."}
+pylint = "*"
 
 [requires]
 python_version = "3.6"
