@@ -13,7 +13,15 @@
 </head>
 <body>
 
-  <img class="img-responsive" src="" style="width:500px">
+  <!-- <img class="img-responsive" src="" style="width:500px;display:block;margin-left:auto;margin-right:auto;width:50%;"> -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-2">
+        <img style="top:50%;left:50%;height:500px;" src="">
+      </div>
+    </div>
+  </div>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -22,6 +30,26 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 <script type = "text/javascript" language = "javascript">
+  let find_index = function($length) {
+    return Math.floor(Math.random() * $length)
+  }
+
+  let fill_src = function($data) {
+    const channels = $data['channels']
+    const urls = Object.values(channels)
+
+    let url_id, image_id = null
+
+    $('img').each(function() {
+      do {
+        url_id = find_index(urls.length)
+        image_id = find_index(Object.keys(urls[url_id]).length)
+        $(this).attr("src", urls[url_id][image_id])
+        console.log(urls[url_id][image_id])
+      } while (urls[url_id][image_id] == '')
+    });
+  };
+
   $(document).ready(function() {
     $(function() {
       $.ajax({
@@ -34,12 +62,7 @@
           console.log(error);
         }
       }).done(function(data) {
-        const channels = data['channels']
-        const urls = Object.values(channels)
-
-        $( "img" ).each(function( index ) {
-          $(this).attr("src", urls[0][0])
-        });
+        fill_src(data)
       }).fail(function (jqXHR, textStatus, error) {
         console.log("Post error: " + error);
       });

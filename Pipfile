@@ -8,6 +8,7 @@ praw = "*"
 redis = "*"
 flask = "*"
 flask-cors = "*"
+multiprocessing-logging = "*"
 
 [dev-packages]
 dashboard-lol = {editable = true, path = "."}

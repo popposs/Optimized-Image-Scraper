@@ -1,27 +1,11 @@
 CHANNELS = [
-    'Meow_Irl',
     'Cats',
-    'CatsonGlass',
     'CatLoaf',
     'Kittens',
-    'CatsStandingUp',
     'JellyBeanToes',
-    'CatsInBusinessAttire',
-    'StartledCats',
-    'Blep',
     'TuckedInKitties',
-    'StuffonCats',
-    'CatGifs',
     'Floof',
-    'CatPranks',
-    'CatReactionGifs',
-    'CatsInSinks',
     'CatPictures',
-    'MildlyStartledCats',
-    'CatHighFive',
-    'CatCircles',
-    'CatReddit',
-    'LOLCats',
     'CatBellies',
-    'CatsvsTechnology'
+    'RarePuppers'
 ]
