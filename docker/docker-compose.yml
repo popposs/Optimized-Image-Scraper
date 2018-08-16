@@ -5,13 +5,18 @@ services:
     image: 'backend'
     depends_on:
       - redis
+    restart: always
     ports:
       - '5000:5000'
     environment:
       - REDDIT_CLIENT_ID=${REDDIT_CLIENT_ID}
       - REDDIT_CLIENT_SECRET=${REDDIT_CLIENT_SECRET}
       - REDDIT_USER_AGENT=${REDDIT_USER_AGENT}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_DB=${REDIS_DB}
   redis:
     image: 'redis:latest'
+    restart: always
     ports:
       - '6379:6379'

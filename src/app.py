@@ -5,6 +5,7 @@ import time
 
 from src.logic.reddit import get_top_posts, cache_posts
 from src.logic.channels import CHANNELS
+import os
 
 
 app = Flask(__name__)
@@ -32,7 +33,7 @@ def update_cache(loop_on):
 if __name__ == '__main__':
     p = Process(target=update_cache, args=(Value('b', True),))
     p.start()
-    app.run(debug=True, use_reloader=False)
+    app.run(debug=True, use_reloader=False, host='0.0.0.0')
     p.join()
 
 
