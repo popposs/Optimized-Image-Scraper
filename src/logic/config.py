@@ -1,5 +1,8 @@
+import os
+
 options = {
-	'host': 'localhost',
-	'port': 6379,
-	'db': 0
+	'host': os.environ['REDIS_HOST'],
+	'port': os.environ['REDIS_PORT'],
+	'db': os.environ['REDIS_DB']
 }
+
