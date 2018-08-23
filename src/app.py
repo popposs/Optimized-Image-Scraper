@@ -17,7 +17,7 @@ def home():
 
 @app.route('/urls', methods=['GET'])
 def get_post():
-    return jsonify({'channels': get_top_posts()})
+    return jsonify({'urls': get_top_posts()})
 
 @app.errorhandler(404)
 def not_found(error):

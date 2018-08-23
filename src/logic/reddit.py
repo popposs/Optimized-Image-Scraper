@@ -11,7 +11,7 @@ def check_is_image(url):
 
 def get_top_posts():
 	global reddit
-	posts = {}
+	posts = []
 
 	for channel in CHANNELS:
 		urls = cache_client.get(channel)
@@ -21,7 +21,7 @@ def get_top_posts():
 		else:
 			urls = [ url.replace('\'', '').strip() for url in urls[1:-1].split(',') ] # decode from bytearray
 
-		posts[channel] = urls
+		posts.extend(urls)
 
 	return posts
 
