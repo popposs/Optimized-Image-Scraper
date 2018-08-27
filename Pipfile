@@ -9,6 +9,7 @@ redis = "*"
 flask = "*"
 flask-cors = "*"
 multiprocessing-logging = "*"
+gunicorn = "*"
 
 [dev-packages]
 dashboard-lol = {editable = true, path = "."}

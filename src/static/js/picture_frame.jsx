@@ -8,14 +8,14 @@ class Welcome extends React.Component {
     }
 
     nextImage() {
-        console.log(this.state.selected);
+        // console.log(this.state.selected);
         this.setState((prevState) => {
             return {'selected': prevState.selected + 1};
         });
     }
 
     prevImage() {
-        console.log(this.state.selected);
+        // console.log(this.state.selected);
         this.setState((prevState) => {
             return {'selected': prevState.selected - 1};
         });
