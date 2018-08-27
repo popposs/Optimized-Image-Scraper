@@ -6,6 +6,8 @@ services:
     depends_on:
       - redis
     restart: always
+    volumes:
+      - ../:/app
     ports:
       - '5000:5000'
     environment:

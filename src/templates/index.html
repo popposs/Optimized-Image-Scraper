@@ -28,14 +28,6 @@
 </body>
 
 <script type = "text/babel" language = "javascript">
-
-  let fill_src = function($data) {
-    const urls = $data['urls']
-    $('img').each(function() {
-      $(this).attr("src", urls[0])
-    });
-  };
-
   $(document).ready(function() {
     $(function() {
       $.ajax({
@@ -53,7 +45,6 @@
           element,
           document.getElementById('root')
         );
-        fill_src(data)
       }).fail(function (jqXHR, textStatus, error) {
         console.log("Post error: " + error);
       });
