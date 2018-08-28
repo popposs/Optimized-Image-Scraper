@@ -1,4 +1,5 @@
 all: stop-all build-all run-all
+
 stop: stop-all
 
 # stop docker containers 
@@ -16,7 +17,7 @@ build-all:
 	-pipenv run docker build -t 'backend' .
 
 run-all:
-	-docker-compose -f docker/docker-compose.yml up
+	-docker-compose -f docker/docker-compose.yml up -d
 
 # individually stop & start containers
 redis: stop-redis build-redis
