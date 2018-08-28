@@ -1,16 +1,15 @@
 all: stop-all build-all run-all
-stop: stop-app stop-redis
+stop: stop-all
 
 # stop docker containers 
-stop-all:
-	stop-redis
-	stop-app
+stop-all: stop-redis stop-app
 
 stop-redis:
 	-docker stop docker_redis_1
 
 stop-app:
 	-docker stop docker_backend_1
+
 
 # build and tag app
 build-all:
