@@ -18,27 +18,30 @@
 </body>
 
 <script type = "text/babel" language = "javascript">
-  $(document).ready(function() {
-    $(function() {
-      $.ajax({
-        url: '/urls',
-        type: 'GET',
-        success: function(response) {
-          return response;
-        },
-        error: function(error) {
-          console.log(error);
-        }
-      }).done(function(data) {
-        const element = <Welcome urls={data['urls']}/>;
-        ReactDOM.render(
-          element,
-          document.getElementById('root')
-        );
-      }).fail(function (jqXHR, textStatus, error) {
-        console.log("Post error: " + error);
-      });
+  let fetchCats = function(page) {
+    $.ajax({
+      url: '/urls/${page}',
+      type: 'GET',
+      success: function(response) {
+        return response;
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    }).done(function(data) {
+      return data['urls'];
+    }).fail(function (jqXHR, textStatus, error) {
+      console.log("Post error: " + error);
+      return null;
     });
+  };
+
+  $(document).ready(() => {
+    const element = <PictureFrame fetchNextCats={fetchCats} urls={fetchCats(0)}/>;
+    ReactDOM.render(
+    element,
+    document.getElementById('root')
+    );
   });
 </script>
 </html>

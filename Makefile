@@ -1,12 +1,16 @@
 all: stop-all build-all run-all
+start-data: start-db start-cache
 
 stop: stop-all
 
-# stop docker containers 
-stop-all: stop-redis stop-app
+# stop docker containers
+stop-all: stop-app stop-db stop-cache
 
-stop-redis:
-	-docker stop docker_redis_1
+stop-db:
+	-docker stop docker_db_1
+
+stop-cache:
+	-docker stop docker_cache_1
 
 stop-app:
 	-docker stop docker_backend_1
@@ -20,12 +24,18 @@ run-all:
 	-docker-compose -f docker/docker-compose.yml up -d
 
 # individually stop & start containers
-redis: stop-redis build-redis
+db: stop-db start-db
 
-app: stop-app build-app
+cache: stop-cache start-cache
 
-build-redis:
-	-docker-compose -f docker/docker-compose.yml up -d redis
+app: stop-app start-app
 
-build-app:
+start-db:
+	-docker-compose -f docker/docker-compose.yml up -d db
+
+start-cache:
+	-docker-compose -f docker/docker-compose.yml up -d cache
+
+start-app:
 	-docker-compose -f docker/docker-compose.yml up -d backend
+

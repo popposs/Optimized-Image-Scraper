@@ -1,21 +1,20 @@
 'use strict';
 
 //Props: array of cat urls and index of currently displayed cat!
-class Welcome extends React.Component {
+class PictureFrame extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { selected: 0 };
+        this.state = { selected: 0, page: 0 };
     }
 
     nextImage() {
-        // console.log(this.state.selected);
+
         this.setState((prevState) => {
             return {'selected': prevState.selected + 1};
         });
     }
 
     prevImage() {
-        // console.log(this.state.selected);
         this.setState((prevState) => {
             return {'selected': prevState.selected - 1};
         });

@@ -10,6 +10,9 @@ flask = "*"
 flask-cors = "*"
 multiprocessing-logging = "*"
 gunicorn = "*"
+sqlalchemy = "*"
+"psycopg2" = "*"
+sqlalchemy-utils = "*"
 
 [dev-packages]
 dashboard-lol = {editable = true, path = "."}

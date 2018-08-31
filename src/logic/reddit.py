@@ -27,7 +27,7 @@ def get_top_posts():
 
 def cache_posts(channel):
 	global reddit
-	submissions = reddit.subreddit(channel).hot(limit=10)
+	submissions = reddit.subreddit(channel).hot(limit=25)
 	urls = [ s.url for s in submissions if check_is_image(s.url) ]
 	cache_client.set(channel, urls)
 	return urls
