@@ -19,9 +19,10 @@ stop-app:
 # build and tag app
 build-all:
 	-pipenv run docker build -t 'backend' .
+	-pipenv run docker build -t 'db' docker/
 
 run-all:
-	-docker-compose -f docker/docker-compose.yml up -d
+	-docker-compose -f docker/docker-compose.yml up
 
 # individually stop & start containers
 db: stop-db start-db
@@ -31,6 +32,7 @@ cache: stop-cache start-cache
 app: stop-app start-app
 
 start-db:
+	-pipenv run docker build -t 'db' docker/
 	-docker-compose -f docker/docker-compose.yml up -d db
 
 start-cache:

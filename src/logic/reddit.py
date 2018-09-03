@@ -13,6 +13,8 @@ def get_top_posts():
 	global reddit
 	posts = []
 
+	# TODO: Make into { channel : [ urls ] }
+	# Also, store in database by channel too
 	for channel in CHANNELS:
 		urls = cache_client.get(channel)
 

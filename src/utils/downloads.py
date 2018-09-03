@@ -1,5 +1,4 @@
 # Adapted from https://www.toptal.com/python/beginners-guide-to-concurrency-and-parallelism-in-python
-
 import json
 import os
 import logging
@@ -27,8 +26,7 @@ class DownloadWorker(Thread):
             directory, link = self.queue.get()
             try:
                 download_path = download_link(directory, link)
-                new_url = URLS(url=link, host_path=str(download_path))
-                db.add(new_url)
+                insert_url(directory, link)
             finally:
                 self.queue.task_done()
 
@@ -55,10 +53,30 @@ def download_images(directory, urls):
         worker.start()
 
     for url in urls:
-        if db.query(exists().where(URLS.url==url)).scalar() == 0:
+        if get_url(url) is None:
             print('Queueing {}'.format(url), flush=True)
             queue.put((directory, url))
 
     queue.join()
-    db.commit()
     logging.info('Took %s', time() - ts)
+
+def get_url(url):
+    return db.query(URLS.url).filter_by(url=url).first()
+
+def insert_url(download_path, url):
+
+    url_ = get_url(url)
+
+    if url_:
+        return
+
+    new_url = URLS(url=url, host_path=str(download_path))
+
+    db.begin_nested()
+    try:
+        db.add(new_url)
+        db.commit()
+    except IntegrityError as e:
+        db.rollback()
+    except:
+        db.rollback()

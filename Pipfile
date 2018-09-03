@@ -11,8 +11,9 @@ flask-cors = "*"
 multiprocessing-logging = "*"
 gunicorn = "*"
 sqlalchemy = "*"
-"psycopg2" = "*"
 sqlalchemy-utils = "*"
+"psycopg2-binary" = "*"
+"psycopg2" = "*"
 
 [dev-packages]
 dashboard-lol = {editable = true, path = "."}

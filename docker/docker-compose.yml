@@ -1,32 +1,53 @@
 version: '3'
 
 services:
+  cache:
+    image: 'redis:latest'
+    restart: always
+    ports:
+      - '6379:6379'
+    networks:
+      - backend
+
   db:
-    image: postgres:11
+    image: 'db:latest'
     ports:
       - "5432:5432"
     restart: always
     environment:
-      - POSTGRES_USER=${POSTGRES_USERNAME}
+      - POSTGRES_USER=${DB_USER}
       - POSTGRES_DB=${DB_NAME}
+    networks:
+      - backend
+
   backend:
-    image: 'backend'
+    image: 'backend:latest'
+    links:
+      - cache
+      - db
     depends_on:
       - cache
+      - db
     restart: always
     volumes:
       - ../:/app
     ports:
       - '5000:5000'
     environment:
+      - DB_USER=${DB_USER}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+      - DB_HOST=${DB_HOST}
+
       - REDDIT_CLIENT_ID=${REDDIT_CLIENT_ID}
       - REDDIT_CLIENT_SECRET=${REDDIT_CLIENT_SECRET}
       - REDDIT_USER_AGENT=${REDDIT_USER_AGENT}
       - REDIS_HOST=${REDIS_HOST}
       - REDIS_PORT=${REDIS_PORT}
       - REDIS_DB=${REDIS_DB}
-  cache:
-    image: 'redis:latest'
-    restart: always
-    ports:
-      - '6379:6379'
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: "bridge"

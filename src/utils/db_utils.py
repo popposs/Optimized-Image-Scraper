@@ -1,9 +1,10 @@
 from sqlalchemy_utils.functions import create_database, drop_database
 from sqlalchemy_utils.functions import database_exists
 from models.base import Base, engine, db_url, db
+import os
 
 def create_tables():
-    print("Creating tables if not found")
+    print("Creating new tables")
     Base.metadata.create_all(bind=engine)
 
 def new_database():

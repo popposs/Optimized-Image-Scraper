@@ -1,0 +1,2 @@
+CREATE DATABASE downloads;
+GRANT ALL PRIVILEGES ON DATABASE downloads TO postgres;

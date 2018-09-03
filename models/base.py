@@ -3,10 +3,14 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
 import os
 
-username = os.environ['POSTGRES_USERNAME']
-host = os.environ['HOST_NAME']
+username = os.environ['DB_USER']
+# password = os.environ['DB_PASSWORD']
+host = os.environ['DB_HOST']
 port = os.environ['DB_PORT']
 db = os.environ['DB_NAME']
+
+# if password:
+#     password = ":" + password
 
 if port:
     port = ":" + port

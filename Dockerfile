@@ -1,17 +1,15 @@
 FROM python:3.6
 
 RUN apt-get -qy update && apt-get -qy install python3-pip && pip3 install pipenv
+RUN pip install pipenv
 
-#RUN mkdir app
 VOLUME ["/app"]
 WORKDIR /app
-RUN ls
 
-#COPY Pipfile .
-#COPY Pipfile.lock .
+COPY Pipfile* /tmp/
 
-RUN pip install pipenv
-RUN pipenv install --system
+RUN cd /tmp && \
+    pipenv install --system
 
 COPY . .
 
