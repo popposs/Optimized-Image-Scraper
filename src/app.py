@@ -39,6 +39,7 @@ def update_cache(loop_on):
         if loop_on.value == True:
             for index, channel in enumerate(CHANNELS):
                 urls = cache_posts(channel)
+                print('Channel:', channel)
                 download_images(download_dir, urls)
                 cache_client.set('urls_{}'.format(index), urls)
                 time.sleep(1)

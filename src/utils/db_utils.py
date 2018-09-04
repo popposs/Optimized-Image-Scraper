@@ -1,6 +1,6 @@
 from sqlalchemy_utils.functions import create_database, drop_database
 from sqlalchemy_utils.functions import database_exists
-from models.base import Base, engine, db_url, db
+from models.base import Base, engine, db_url, Session
 import os
 
 def create_tables():
@@ -18,6 +18,7 @@ def db_checks():
     create_tables()
 
 def erase_tables():
+    db = Session()
     meta = Base.metadata
 
     for table in reversed(meta.sorted_tables):

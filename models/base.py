@@ -23,6 +23,5 @@ db_url = 'postgresql+psycopg2://{username}@{host}{port}/{db}'.format(username=us
 engine = create_engine(db_url)
 session_factory = sessionmaker(bind=engine)
 Session = scoped_session(session_factory)
-db = Session()
 
 Base = declarative_base()
