@@ -8,6 +8,7 @@
 - Dockerized for ease of development
 
 Installation:
+- create a `.env` from `sample.env`
 - `pipenv shell`
 - `make all`
 - navigate to http://localhost:5000
