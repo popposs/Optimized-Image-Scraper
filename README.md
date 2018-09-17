@@ -1,6 +1,5 @@
-### Cats of Reddit [WIP]
+### Optimized Image Scraper [WIP]
 
-Scrape cats off reddit.
 - Flask backend served with Nginx + Gunicorn (WIP)
 - React + jQuery frontend
 - PostgreSQL for storing image metadata on filesystem
