@@ -6,6 +6,7 @@
 - Redis for caching
 - Multithreaded image fetching
 - Dockerized for ease of development
+- ML compression (WIP)
 
 Installation:
 - create a `.env` from `sample.env`
