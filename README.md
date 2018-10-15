@@ -1,6 +1,6 @@
 ### Optimized Image Scraper [WIP]
 
-- Flask backend served with Nginx + Gunicorn (WIP)
+- Flask backend served with Nginx + Gunicorn
 - React + jQuery frontend
 - PostgreSQL for storing image metadata on filesystem
 - Redis for caching
